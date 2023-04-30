@@ -5,10 +5,12 @@ using DG.Tweening;
 
 public class Character : MonoBehaviour
 {
-    bool isMoving;
+    [SerializeField, Range(0, 1)] float moveDuration;
+
     void Update()
     {
-        if (isMoving)
+
+        if (DOTween.IsTweening(transform))
             return;
 
         Vector3 direction = Vector3.zero;
@@ -30,7 +32,7 @@ public class Character : MonoBehaviour
             direction += Vector3.left;
         }
 
-        if(direction == Vector3.zero)
+        if (direction == Vector3.zero)
             return;
 
         Move(direction);
@@ -39,8 +41,6 @@ public class Character : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        isMoving = true;
-        var moveTween = transform.DOMove(transform.position + direction, 0.1f);
-        moveTween.onComplete = () => isMoving = false;
+        var moveTween = transform.DOMove(transform.position + direction, moveDuration);
     }
 }
