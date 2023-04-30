@@ -5,7 +5,8 @@ using DG.Tweening;
 
 public class Character : MonoBehaviour
 {
-    [SerializeField, Range(0, 1)] float moveDuration;
+    [SerializeField, Range(0, 1)] float moveDuration = 0.1f;
+    [SerializeField, Range(0, 1)] float jumpHeight = 0.5f;
 
     void Update()
     {
@@ -41,6 +42,12 @@ public class Character : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        var moveTween = transform.DOMove(transform.position + direction, moveDuration);
+        transform.DOMoveZ(transform.position.z + direction.z, moveDuration);
+        transform.DOMoveX(transform.position.x + direction.x, moveDuration);
+    
+        var seq = DOTween.Sequence();
+        seq.Append(transform.DOMoveY(jumpHeight, moveDuration * 0.5f));
+        seq.Append(transform.DOMoveY(0, moveDuration * 0.5f));
+
     }
 }
