@@ -3125,8 +3125,8 @@ MonoBehaviour:
   initialGrassCount: 5
   horizontalSize: 9
   backViewDistance: -4
-  forwardViewDistance: 15
-  treeProbability: 0.1
+  forwardViewDistance: 50
+  treeProbability: 0.5
 --- !u!4 &1188263165
 Transform:
   m_ObjectHideFlags: 0
