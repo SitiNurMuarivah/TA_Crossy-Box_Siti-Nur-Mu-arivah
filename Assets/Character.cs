@@ -42,12 +42,8 @@ public class Character : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        transform.DOMoveZ(transform.position.z + direction.z, moveDuration);
-        transform.DOMoveX(transform.position.x + direction.x, moveDuration);
+        transform.DOJump(transform.position + direction, jumpHeight, 1, moveDuration);
     
-        var seq = DOTween.Sequence();
-        seq.Append(transform.DOMoveY(jumpHeight, moveDuration * 0.5f));
-        seq.Append(transform.DOMoveY(0, moveDuration * 0.5f));
-
+        transform.forward = direction;
     }
 }
