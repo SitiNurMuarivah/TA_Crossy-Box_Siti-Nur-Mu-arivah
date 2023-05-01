@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class Grass : Terrain
 {
-    [SerializeField] GameObject treePrefab;
+    [SerializeField] List<GameObject> treePrefabList;
+    [SerializeField, Range(0, 1)] float treeProbability;
+
+    public void SetTreePercentage(float newProbability)
+    {
+        this.treeProbability = Mathf.Clamp01(newProbability);
+    }
 
     public override void Generate(int size)
     {
         base.Generate(size);
 
-        var limit = Mathf.FloorToInt((float)size / 3);
-        var treeCount = Mathf.FloorToInt((float)size / 3);
+        var limit = Mathf.FloorToInt((float)size / 2);
+        var treeCount = Mathf.FloorToInt((float)size * treeProbability);
 
         //membuat daftar posisi yang masih kosong
         List<int> emptyPosition = new List<int>();
@@ -23,15 +29,29 @@ public class Grass : Terrain
         for (int i = 0; i < treeCount; i++)
         {
             //memilih posisi kosong secara random
-            var randomIndex = Random.Range(0, emptyPosition.Count - 1);
+            var randomIndex = Random.Range(0, emptyPosition.Count);
             var pos = emptyPosition[randomIndex];
-            
+
             //poisi yang terpilih hapus dari daftar posisi kosong
             emptyPosition.RemoveAt(randomIndex);
 
-            //set pohon ke posisi yang terpilih
-            var tree = Instantiate(treePrefab, transform);
-            tree.transform.localPosition = new Vector3(pos, 0, 0);
+            SpawnRandomTree(pos);
+
         }
+
+        //selalu ada pohon diujung
+        SpawnRandomTree(-limit - 1);
+        SpawnRandomTree(limit + 1);
+    }
+
+    private void SpawnRandomTree(int xPos)
+    {
+        //pilih prefab pohon secara random
+        var randomIndex = Random.Range(0, treePrefabList.Count);
+        var prefab = treePrefabList[randomIndex];
+
+        //set pohon ke posisi yang terpilih
+        var tree = Instantiate(prefab, transform);
+        tree.transform.localPosition = new Vector3(xPos, 0, 0);
     }
 }

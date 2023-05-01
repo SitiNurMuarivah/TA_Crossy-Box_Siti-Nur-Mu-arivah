@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cc5eaf35508b6d48bfe3ceff9ea37b1, type: 2}
+  - {fileID: 2100000, guid: d198b174bcb198847ad521b314ef65b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -162,7 +162,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cc5eaf35508b6d48bfe3ceff9ea37b1, type: 2}
+  - {fileID: 2100000, guid: d198b174bcb198847ad521b314ef65b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -356,7 +356,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cc5eaf35508b6d48bfe3ceff9ea37b1, type: 2}
+  - {fileID: 2100000, guid: d198b174bcb198847ad521b314ef65b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -550,7 +550,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5cc5eaf35508b6d48bfe3ceff9ea37b1, type: 2}
+  - {fileID: 2100000, guid: d198b174bcb198847ad521b314ef65b2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -595,7 +595,7 @@ GameObject:
   m_Component:
   - component: {fileID: 707573298069525969}
   m_Layer: 0
-  m_Name: Tree
+  m_Name: Tree 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
