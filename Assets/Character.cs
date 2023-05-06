@@ -18,7 +18,7 @@ public class Character : MonoBehaviour
     private bool isMoveable = false;
     void Update()
     {
-        if (isMoveable)
+        if (isMoveable == false)
             return;
 
         if (DOTween.IsTweening(transform))
@@ -68,6 +68,11 @@ public class Character : MonoBehaviour
         transform.forward = direction;
     }
 
+    public void SetMoveable(bool value)
+    {
+        isMoveable = value;
+    }
+
     public void UpdateMoveLimit(int horizontalSize, int backLimit)
     {
         leftMoveLimit = -horizontalSize / 2;
@@ -84,14 +89,15 @@ public class Character : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            if (isMoveable == true)
+            if (transform.localScale.y == 0.1f)
                 return;
 
-            transform.DOScaleY(0.1f, 0.2f);
+            transform.DOScale(new Vector3(2,0.1f,2), 0.2f);
 
-            isMoveable = true;
+            isMoveable = false;
             Invoke("Die", 3);
         }
+
         else if (other.CompareTag("Coin"))
         {
             var coin = other.GetComponent<Coin>();
