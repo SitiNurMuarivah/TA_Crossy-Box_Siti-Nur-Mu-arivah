@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class Terrain : MonoBehaviour
 {
-    private void Start()
-    {
-        Generate(9);
-    }
     [SerializeField] GameObject tilePrefab;
+    protected float horizontalSize;
     public virtual void Generate(int size)
     {
+        horizontalSize = size;
+        
         if (size == 0)
             return;
 
@@ -48,4 +47,3 @@ public class Terrain : MonoBehaviour
 
     }
 }
-
