@@ -14,10 +14,11 @@ public class Character : MonoBehaviour
 
     public UnityEvent<Vector3> OnJumpEnd;
     public UnityEvent<int> OnGetCoin;
-    private bool isDie = false;
+    public UnityEvent OnDie;
+    private bool isMoveable = false;
     void Update()
     {
-        if (isDie)
+        if (isMoveable)
             return;
 
         if (DOTween.IsTweening(transform))
@@ -83,16 +84,33 @@ public class Character : MonoBehaviour
     {
         if (other.CompareTag("Car"))
         {
-            if (isDie == true)
+            if (isMoveable == true)
                 return;
 
             transform.DOScaleY(0.1f, 0.2f);
 
-            isDie = true;
+            isMoveable = true;
+            Invoke("Die", 3);
         }
         else if (other.CompareTag("Coin"))
         {
-            OnGetCoin.Invoke(1);
+            var coin = other.GetComponent<Coin>();
+            OnGetCoin.Invoke(coin.Value);
+            coin.Collected();
         }
+
+        else if (other.CompareTag("Eagle"))
+        {
+            if (this.transform != other.transform)
+            {
+                this.transform.SetParent(other.transform);
+                Invoke("Die", 3);
+            }
+        }
+    }
+
+    private void Die()
+    {
+        OnDie.Invoke();
     }
 }
