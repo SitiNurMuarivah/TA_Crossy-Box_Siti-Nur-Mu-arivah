@@ -45,3 +45,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tilePrefab: {fileID: 6774105420026735666, guid: 7b17de601b1cf05429518836a47199ab, type: 3}
+  carPrefab: {fileID: 5362845592084598897, guid: 50058b00c7d6ffa48947ef3f830f5ad8, type: 3}
+  minCarSpawnInterval: 1
+  maxCarSpawnInterval: 3
